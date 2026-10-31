@@ -3,6 +3,11 @@
 Menú público de Vaya Baya. Lo más reciente arriba. La misma lista vive en el chip de versión
 del pie de página.
 
+## v1.4 — 31 oct 2026 · 16:45
+### Corregido
+- Las tarjetas del menú recortaban la base de Andrea; ahora muestran el texto completo
+  ("Base de overnight avena cremosa (con yogurt griego natural) mezclada con ...").
+
 ## v1.3 — 31 oct 2026 · 16:42
 ### Agregado
 - Descripciones oficiales (Base, Fruta, Topping) leídas de
