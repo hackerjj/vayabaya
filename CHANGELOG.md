@@ -3,6 +3,10 @@
 Menú público de Vaya Baya. Lo más reciente arriba. La misma lista vive en el chip de versión
 del pie de página.
 
+## v1.2 — 31 oct 2026 · 16:27
+### Cambiado
+- Bowls en 2 columnas (3 renglones) en todas las pantallas; ancho máximo de 860 px.
+
 ## v1.1 — 31 oct 2026 · 16:05
 ### Agregado
 - `uber.html`: material para Uber Eats. Fotos de producto en 5:4 (2048 × 1638, JPG) recortadas
