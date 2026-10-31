@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Vaya Baya · Material para Uber Eats</title>
+<meta name="theme-color" content="#7A1F37">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+<style>
+:root{--fr:#7A1F37;--va:#EDE3B2;--muted:rgba(122,31,55,.78);--line:rgba(122,31,55,.22)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--va);color:var(--fr);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.45}
+.ico{display:inline-block;width:1em;height:1em;vertical-align:-0.125em;margin-right:4px}
+header{background:var(--fr);color:var(--va);padding:16px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+header img{height:56px;width:auto;display:block}
+header h1{margin:0;font-size:20px}
+header p{margin:2px 0 0;font-size:14px;opacity:.9}
+main{max-width:1080px;margin:0 auto;padding:18px 16px 40px}
+h2{font-size:21px;margin:26px 0 10px}
+.card{border:1.5px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px}
+.steps{margin:0;padding-left:20px}
+.steps li{margin:4px 0}
+.muted{color:var(--muted);font-size:14px}
+.item{display:grid;grid-template-columns:260px 1fr;gap:16px;border:1.5px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px}
+.item.off{opacity:.6}
+.item img{width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;border-radius:10px;display:block}
+.noimg{aspect-ratio:5/4;border:1.5px dashed var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;color:var(--muted);padding:10px}
+.field{margin:0 0 10px}
+.field label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:3px}
+.row{display:flex;gap:8px;align-items:flex-start}
+.val{flex:1;border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;font-size:15px;background:var(--va);color:var(--fr);min-height:36px}
+.btn{border:1.5px solid var(--fr);background:var(--va);color:var(--fr);border-radius:8px;padding:7px 12px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
+.btn:hover,.btn:focus-visible{background:var(--fr);color:var(--va);outline:none}
+.btn.solid{background:var(--fr);color:var(--va)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:9px;background:var(--fr);color:var(--va);margin-left:6px;vertical-align:middle}
+.cover{width:100%;height:auto;border-radius:10px;display:block;margin-bottom:10px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.status{font-size:13px;color:var(--muted)}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--fr);color:var(--va);padding:9px 16px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+@media (max-width:700px){.item{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <img src="img/logo-horizontal.png" alt="Vaya Baya" width="200" height="56">
+  <div><h1>Material para Uber Eats</h1><p>Fotos con el formato de Uber, nombres, descripciones y precios listos para copiar.</p></div>
+</header>
+<main>
+  <div class="card">
+    <strong>Cómo usar esta página</strong>
+    <ol class="steps">
+      <li>En el Administrador de Uber Eats, abre <strong>Menú</strong> y crea las categorías <strong>Bowls</strong> y <strong>Bebidas</strong>.</li>
+      <li>Por cada producto: copia el nombre, la descripción y el precio con los botones, y sube la foto con <strong>Descargar foto</strong>.</li>
+      <li>Sube la portada en <strong>Tienda → Foto de portada</strong>.</li>
+      <li>Los precios salen en vivo de la calculadora. Si cambian ahí, recarga esta página.</li>
+    </ol>
+    <p class="muted" style="margin:8px 0 0">Formato según la <a href="https://help.uber.com/es/merchants-and-restaurants/article/merchant-submitted-menu-catalog-photo-guidelines?nodeId=6985355b-0426-4523-94f2-89bb9b0566e9" target="_blank" rel="noopener" style="color:var(--fr)">guía de Uber</a>: fotos de producto JPG en 5:4 (2048 × 1638 px), un solo producto centrado, sin texto ni logos. Portada JPEG de 2880 × 2304 px. Uber revisa cada foto a mano.</p>
+    <p class="status" id="status" style="margin:8px 0 0">Cargando precios...</p>
+  </div>
+
+  <h2>Portada de la tienda</h2>
+  <div class="card">
+    <img class="cover" src="img/uber/uber-portada.jpg" alt="Portada: Baya Bowl, Baby Bowl y Choco Bowl sobre fondo frambuesa" width="2880" height="2304" loading="lazy">
+    <div class="bar">
+      <a class="btn solid" href="img/uber/uber-portada.jpg" download="vaya-baya-portada-uber.jpg">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>Descargar portada</a>
+      <span class="muted">2880 × 2304 px · JPEG</span>
+    </div>
+  </div>
+
+  <h2>Datos de la tienda</h2>
+  <div class="card" id="store"></div>
+
+  <h2>Bowls</h2>
+  <div id="bowls"></div>
+
+  <h2>Bebidas</h2>
+  <p class="muted">Uber permite publicar productos sin foto. Si después tienen fotos de las bebidas, se agregan igual que los bowls.</p>
+  <div id="drinks"></div>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="common.js"></script>
+<script>
+const UBER_PHOTO = {baby: "uber-bowl-baby", baya: "uber-bowl-baya", apple: "uber-bowl-apple", choco: "uber-bowl-choco", monkey: "uber-bowl-monkey", tropi: "uber-bowl-tropi"};
+const DL = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>';
+const CP = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>';
+const values = [];
+
+function field(label, text) {
+  values.push(text);
+  return `<div class="field"><label>${esc(label)}</label><div class="row"><div class="val">${esc(text)}</div><button type="button" class="btn" data-copy="${values.length - 1}" aria-label="Copiar ${esc(label)}">${CP}Copiar</button></div></div>`;
+}
+function slug(s) { return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+function cleanName(n) { return n.replace(/\s*\(temporada\)\s*/i, "").trim(); }
+
+function render(d, live) {
+  if (!d || !Array.isArray(d.productos)) return;
+  values.length = 0;
+  const ins = d.insumos || [];
+  document.getElementById("store").innerHTML =
+    field("Nombre de la tienda", "Vaya Baya") +
+    field("Descripción de la tienda", "Bowls de avena remojada, yogurt griego y fruta. También café y bebidas.") +
+    field("Categorías del menú", "Bowls, Bebidas");
+  const bowls = d.productos.filter(p => isBowl(p, ins)), drinks = d.productos.filter(p => !isBowl(p, ins));
+  const item = (p, cat) => {
+    const k = p.nombre.trim().split(/\s+/)[0].toLowerCase(), ph = UBER_PHOTO[k], name = cleanName(p.nombre);
+    const img = ph ? `<img src="img/uber/${ph}.jpg" alt="${esc(name)}" width="2048" height="1638" loading="lazy">
+        <div class="bar" style="margin-top:8px"><a class="btn solid" href="img/uber/${ph}.jpg" download="vaya-baya-${slug(name)}.jpg">${DL}Descargar foto</a><span class="muted">2048 × 1638 · JPG</span></div>`
+      : `<div class="noimg">Sin foto todavía</div>`;
+    const flags = (/temporada/i.test(p.nombre) ? '<span class="tag">De temporada</span>' : "") + (p.activo ? "" : '<span class="tag">Inactivo: subir como agotado</span>');
+    return `<div class="item${p.activo ? "" : " off"}"><div>${img}</div><div>
+      <h3 style="margin:0 0 10px;font-size:18px">${esc(name)}${flags}</h3>
+      ${field("Nombre", name)}
+      ${field("Descripción", uberDescription(p, ins) || name)}
+      ${field("Precio (MXN)", String(p.precio))}
+      ${field("Categoría", cat)}
+    </div></div>`;
+  };
+  document.getElementById("bowls").innerHTML = bowls.map(p => item(p, "Bowls")).join("");
+  document.getElementById("drinks").innerHTML = drinks.map(p => item(p, "Bebidas")).join("");
+  document.getElementById("status").textContent = live ? "Precios en vivo de la calculadora." : "Mostrando la copia guardada; cargando precios en vivo...";
+}
+
+document.addEventListener("click", async e => {
+  const b = e.target.closest("[data-copy]"); if (!b) return;
+  const t = values[+b.dataset.copy];
+  try { await navigator.clipboard.writeText(t); toast("Copiado: " + (t.length > 40 ? t.slice(0, 40) + "..." : t)); }
+  catch (err) { toast("No se pudo copiar. Selecciona el texto a mano."); }
+});
+let tt; function toast(m) { const el = document.getElementById("toast"); el.textContent = m; el.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => el.classList.remove("on"), 1800); }
+
+loadMenuData(render);
+</script>
+</body>
+</html>
