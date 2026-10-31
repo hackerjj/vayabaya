@@ -36,6 +36,8 @@ h2{color:var(--fr);font-size:24px;margin:22px 0 12px;scroll-margin-top:64px}
 .card .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
 .card h3{margin:0;font-size:18px;color:var(--fr)}
 .card .desc{margin:0;color:var(--muted);font-size:14px;flex:1}
+.card .desc b{color:var(--fr);font-weight:700}
+.card .desc span{display:block;margin-top:3px}
 .price{font-weight:800;font-size:19px;color:var(--ink)}
 .card.off{opacity:.55}
 .card.off img{filter:grayscale(.85)}
@@ -78,24 +80,32 @@ footer p{margin:4px 0}
 </nav>
 <main>
   <h2 id="bowls">Bowls</h2>
-  <p class="intro">Todos llevan base de avena remojada y yogurt griego. Porción de 750 ml.</p>
+  <p class="intro">Todos llevan base de overnight avena cremosa con yogurt griego natural. Porción de 750 ml.</p>
   <div class="grid" id="bowlGrid" aria-live="polite"></div>
 
   <h2 id="bebidas">Bebidas</h2>
   <ul class="drinks" id="drinkList" aria-live="polite"></ul>
 
-  <p class="note">Precios en pesos mexicanos, IVA incluido. Las frutas de temporada pueden agotarse.</p>
+  <p class="note"><span id="sugarNote">No utilizamos azúcar; la pasta de vainilla les da un ligero toque dulce.</span><br>Precios en pesos mexicanos, IVA incluido. Las frutas de temporada pueden agotarse.</p>
 </main>
 <footer>
   <p><strong>Vaya Baya</strong> · Colonia Obrera, Ciudad de México</p>
   <p>Muy pronto en Uber Eats y Rappi.</p>
-  <button type="button" class="ver-chip" onclick="toggleChangelog(true)" aria-haspopup="dialog">v1.2</button>
+  <button type="button" class="ver-chip" onclick="toggleChangelog(true)" aria-haspopup="dialog">v1.3</button>
 </footer>
 
 <div class="cl-backdrop" id="changelog" role="dialog" aria-modal="true" aria-labelledby="cl-title" onclick="if(event.target===this)toggleChangelog(false)">
   <div class="cl-modal">
     <div class="cl-head"><h3 id="cl-title">Historial de cambios</h3><button class="cl-close" onclick="toggleChangelog(false)" aria-label="Cerrar">&times;</button></div>
     <div class="cl-body">
+      <div class="cl-ver">
+        <h4>v1.3 <small>31 oct 2026 · 16:42</small></h4>
+        <ul>
+          <li><span class="cl-tag cl-add">NUEVO</span>Descripciones oficiales de Andrea en cada bowl: <strong>Base</strong>, <strong>Fruta</strong> y <strong>Topping</strong>. Se leen de andvelasco/vayabaya/menu/descripciones.json, así que un cambio ahí se refleja solo.</li>
+          <li><span class="cl-tag cl-add">NUEVO</span>Nota al pie: "No utilizamos azúcar; la pasta de vainilla les da un ligero toque dulce."</li>
+          <li><span class="cl-tag cl-chg">CAMBIO</span>La página de Uber usa el texto completo de Andrea como descripción de cada producto.</li>
+        </ul>
+      </div>
       <div class="cl-ver">
         <h4>v1.2 <small>31 oct 2026 · 16:27</small></h4>
         <ul>
@@ -128,7 +138,17 @@ footer p{margin:4px 0}
 const CUP = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8zM17 10h2a2 2 0 0 1 0 4h-2M8 3v2M12 3v2"/></svg>';
 const BOTTLE = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 2h4v4l2 3v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9l2-3V2z"/></svg>';
 
+// Texto de la tarjeta: lo que lleva la base (sin repetir "Base de overnight avena..."), fruta y topping
+function cardDesc(p, ins) {
+  const d = descFor(p);
+  if (!d) return esc(ingredients(p, ins));
+  const m = (d.base || "").match(/mezclada con (.*)$/i);
+  const base = m ? m[1].replace(/\.$/, "") : (d.base || "").replace(/\.$/, "");
+  const cap = t => t.charAt(0).toUpperCase() + t.slice(1);
+  return [base && `<span><b>Base:</b> ${esc(cap(base))}.</span>`, d.fruta && `<span><b>Fruta:</b> ${esc(d.fruta)}</span>`, d.topping && `<span><b>Topping:</b> ${esc(d.topping)}</span>`].filter(Boolean).join("");
+}
 function render(d) {
+  if (DESC && DESC.nota) document.getElementById("sugarNote").textContent = DESC.nota;
   if (!d || !Array.isArray(d.productos)) return;
   const ins = d.insumos || [];
   const bowls = [], drinks = [];
@@ -141,7 +161,7 @@ function render(d) {
       ${img ? `<img src="${img}" alt="${esc(p.nombre)}" loading="lazy" width="1200" height="1200">` : ""}
       <div class="body">
         <h3>${esc(p.nombre.replace(/\s*\(temporada\)\s*/i, ""))}${/temporada/i.test(p.nombre) ? '<span class="tag">De temporada</span>' : ""}${p.activo ? "" : '<span class="tag">Agotado</span>'}</h3>
-        <p class="desc">${esc(ingredients(p, ins))}</p>
+        <p class="desc">${cardDesc(p, ins)}</p>
         <div class="price">${money(p.precio)}</div>
       </div>
     </article>`;

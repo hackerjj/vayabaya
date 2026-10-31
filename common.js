@@ -56,7 +56,24 @@ function uberDescription(p, insumos) {
   const all = list(items);
   return all ? all.charAt(0).toUpperCase() + all.slice(1) + "." : "";
 }
+// Descripciones oficiales (escritas por Andrea) en andvelasco/vayabaya/menu/descripciones.json.
+// Copia local descripciones.json como respaldo.
+const DESC_URL = "https://raw.githubusercontent.com/andvelasco/vayabaya/main/menu/descripciones.json";
+let DESC = null;
+function descKey(p) { return p.nombre.trim().split(/\s+/)[0].toLowerCase(); }
+function descFor(p) { return DESC && DESC.productos ? DESC.productos[descKey(p)] || null : null; }
+// Texto completo en una línea (para Uber)
+function fullDescription(p, insumos) {
+  const d = descFor(p);
+  return d ? [d.base, d.fruta, d.topping].filter(Boolean).join(" ") : uberDescription(p, insumos);
+}
+async function loadDescriptions() {
+  for (const u of ["descripciones.json", DESC_URL]) {
+    try { const r = await fetch(u, {cache: "no-store"}); if (r.ok) { const j = await r.json(); if (j && j.productos) DESC = j; } } catch (e) {}
+  }
+}
 async function loadMenuData(onData) {
+  await loadDescriptions();
   try { const r = await fetch("menu.json", {cache: "no-store"}); if (r.ok) onData(await r.json(), false); } catch (e) {}
   try { const r = await fetch(API, {cache: "no-store"}); if (r.ok) onData(await r.json(), true); } catch (e) {}
 }

@@ -1,0 +1,47 @@
+{
+  "nota": "No utilizamos azúcar; la pasta de vainilla les da un ligero toque dulce.",
+  "productos": {
+    "baby": {
+      "nombre": "Baby Bowl",
+      "base": "Base de overnight avena cremosa (con yogurt griego natural) mezclada con cúrcuma, pasta de vainilla y chía hidratada.",
+      "fruta": "Banana y fresas.",
+      "topping": "Coco tostado y granos ancestrales.",
+      "temporada": false
+    },
+    "baya": {
+      "nombre": "Baya Bowl",
+      "base": "Base de overnight avena cremosa (con yogurt griego natural) mezclada con açaí deshidratado, pasta de vainilla y chía hidratada.",
+      "fruta": "Bayas (fresas, blueberries y zarzamoras).",
+      "topping": "Coco tostado.",
+      "temporada": false
+    },
+    "monkey": {
+      "nombre": "Monkey Bowl",
+      "base": "Base de overnight avena cremosa (con yogurt griego natural) mezclada con spirulina azul, pasta de vainilla y chía hidratada.",
+      "fruta": "Banana y blueberries.",
+      "topping": "Coco tostado.",
+      "temporada": false
+    },
+    "apple": {
+      "nombre": "Apple Pay Bowl",
+      "base": "Base de overnight avena cremosa (con yogurt griego natural) mezclada con canela y pasta de vainilla.",
+      "fruta": "Manzana y banana.",
+      "topping": "Granola de granos ancestrales.",
+      "temporada": false
+    },
+    "choco": {
+      "nombre": "Choco Bowl",
+      "base": "Base de overnight avena cremosa (con yogurt griego natural) mezclada con cocoa y pasta de vainilla.",
+      "fruta": "Banana y fresas.",
+      "topping": "Coco tostado.",
+      "temporada": false
+    },
+    "tropi": {
+      "nombre": "Tropi Bowl",
+      "base": "Base de overnight avena cremosa (con yogurt griego natural) mezclada con açaí deshidratado, pasta de vainilla y chía hidratada.",
+      "fruta": "Mango y banana.",
+      "topping": "Coco tostado.",
+      "temporada": true
+    }
+  }
+}

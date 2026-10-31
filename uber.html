@@ -104,7 +104,7 @@ function render(d, live) {
   const ins = d.insumos || [];
   document.getElementById("store").innerHTML =
     field("Nombre de la tienda", "Vaya Baya") +
-    field("Descripción de la tienda", "Bowls de avena remojada, yogurt griego y fruta. También café y bebidas.") +
+    field("Descripción de la tienda", "Bowls de overnight avena cremosa con yogurt griego natural, fruta y toppings. También café y bebidas.") +
     field("Categorías del menú", "Bowls, Bebidas");
   const bowls = d.productos.filter(p => isBowl(p, ins)), drinks = d.productos.filter(p => !isBowl(p, ins));
   const item = (p, cat) => {
@@ -116,7 +116,7 @@ function render(d, live) {
     return `<div class="item${p.activo ? "" : " off"}"><div>${img}</div><div>
       <h3 style="margin:0 0 10px;font-size:18px">${esc(name)}${flags}</h3>
       ${field("Nombre", name)}
-      ${field("Descripción", uberDescription(p, ins) || name)}
+      ${field("Descripción", fullDescription(p, ins) || name)}
       ${field("Precio (MXN)", String(p.precio))}
       ${field("Categoría", cat)}
     </div></div>`;

@@ -3,6 +3,15 @@
 Menú público de Vaya Baya. Lo más reciente arriba. La misma lista vive en el chip de versión
 del pie de página.
 
+## v1.3 — 31 oct 2026 · 16:42
+### Agregado
+- Descripciones oficiales (Base, Fruta, Topping) leídas de
+  `andvelasco/vayabaya/menu/descripciones.json`, con copia local `descripciones.json` de
+  respaldo. Si falta un bowl, se usa la lista automática de ingredientes.
+- Nota de Andrea sobre el azúcar al pie del menú.
+### Cambiado
+- `uber.html`: descripción de cada producto con el texto completo de Andrea.
+
 ## v1.2 — 31 oct 2026 · 16:27
 ### Cambiado
 - Bowls en 2 columnas (3 renglones) en todas las pantallas; ancho máximo de 860 px.
