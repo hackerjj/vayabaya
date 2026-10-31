@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vaya Baya · Menú</title>
+<meta name="description" content="Bowls de avena, yogurt griego y fruta, y café. Colonia Obrera, CDMX.">
+<meta name="theme-color" content="#7B1934">
+<meta property="og:title" content="Vaya Baya · Menú">
+<meta property="og:description" content="Bowls de avena, yogurt griego y fruta, y café. Colonia Obrera, CDMX.">
+<meta property="og:image" content="img/logo-vainilla-2-lineas.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+<style>
+:root{--fr:#7B1934;--va:#EDE3B2;--bg:#FBF8EC;--ink:#2B1A1F;--muted:#6E5A5F;--line:#E8DDB8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.45}
+.ico{display:inline-block;width:1em;height:1em;vertical-align:-0.125em;margin-right:4px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+header{background:var(--fr);color:var(--va);text-align:center;padding:26px 16px 22px}
+header img{width:min(420px,86vw);height:auto;display:block;margin:0 auto}
+header p{margin:6px 0 0;font-size:16px;opacity:.95}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;justify-content:center;gap:8px;padding:10px}
+nav a{color:var(--fr);text-decoration:none;font-weight:600;padding:7px 16px;border:1.5px solid var(--fr);border-radius:20px;font-size:15px}
+nav a:hover,nav a:focus-visible{background:var(--fr);color:var(--va);outline:none}
+main{max-width:1080px;margin:0 auto;padding:18px 16px 40px}
+h2{color:var(--fr);font-size:24px;margin:22px 0 12px;scroll-margin-top:64px}
+.intro{color:var(--muted);margin:0 0 6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--va)}
+.card .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{margin:0;font-size:18px;color:var(--fr)}
+.card .desc{margin:0;color:var(--muted);font-size:14px;flex:1}
+.price{font-weight:800;font-size:19px;color:var(--ink)}
+.card.off{opacity:.55}
+.card.off img{filter:grayscale(.7)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:10px;background:var(--va);color:var(--fr);margin-left:6px;vertical-align:middle}
+.drinks{list-style:none;padding:0;margin:0;background:#fff;border:1px solid var(--line);border-radius:16px}
+.drinks li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.drinks li:last-child{border-bottom:0}
+.drinks .n{font-weight:600}
+.drinks .n svg{color:var(--fr)}
+.drinks .d{display:block;font-size:13px;color:var(--muted);font-weight:400;margin-left:22px}
+.note{font-size:13px;color:var(--muted);margin-top:14px}
+footer{background:var(--fr);color:var(--va);text-align:center;padding:22px 16px;font-size:14px}
+footer p{margin:4px 0}
+.ver-chip{background:none;border:1px solid var(--va);color:var(--va);border-radius:10px;padding:2px 9px;font-size:11px;cursor:pointer;margin-top:8px}
+.cl-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;align-items:center;justify-content:center;padding:16px}
+.cl-backdrop.on{display:flex}
+.cl-modal{background:#fff;color:var(--ink);border-radius:14px;max-width:560px;width:100%;max-height:85vh;display:flex;flex-direction:column;text-align:left}
+.cl-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}
+.cl-head h3{margin:0;font-size:17px}
+.cl-close{border:0;background:none;font-size:22px;cursor:pointer;color:var(--muted)}
+.cl-body{padding:14px 18px;overflow:auto;font-size:14px}
+.cl-ver h4{font-size:14px;margin:0 0 4px;color:var(--fr)}
+.cl-ver h4 small{color:var(--muted);font-weight:500;margin-left:8px}
+.cl-ver ul{margin:4px 0 14px 18px;padding:0}
+.cl-tag{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;margin-right:6px}
+.cl-add{background:#e9f6ee;color:#2e7d4f;border:1px solid #2e7d4f}
+.cl-chg{background:#fdeee6;color:var(--fr);border:1px solid var(--fr)}
+.cl-fix{background:#fff4e0;color:#a86a00;border:1px solid #a86a00}
+</style>
+</head>
+<body>
+<header>
+  <h1 class="sr-only">Vaya Baya</h1>
+  <img src="img/logo-horizontal.png" alt="Vaya Baya" width="1000" height="281">
+  <p>Bowls de avena, yogurt griego y fruta.</p>
+</header>
+<nav aria-label="Secciones del menú">
+  <a href="#bowls">Bowls</a>
+  <a href="#bebidas">Bebidas</a>
+</nav>
+<main>
+  <h2 id="bowls">Bowls</h2>
+  <p class="intro">Todos llevan base de avena remojada y yogurt griego. Porción de 750 ml.</p>
+  <div class="grid" id="bowlGrid" aria-live="polite"></div>
+
+  <h2 id="bebidas">Bebidas</h2>
+  <ul class="drinks" id="drinkList" aria-live="polite"></ul>
+
+  <p class="note">Precios en pesos mexicanos, IVA incluido. Las frutas de temporada pueden agotarse.</p>
+</main>
+<footer>
+  <p><strong>Vaya Baya</strong> · Colonia Obrera, Ciudad de México</p>
+  <p>Muy pronto en Uber Eats y Rappi.</p>
+  <button type="button" class="ver-chip" onclick="toggleChangelog(true)" aria-haspopup="dialog">v1.0</button>
+</footer>
+
+<div class="cl-backdrop" id="changelog" role="dialog" aria-modal="true" aria-labelledby="cl-title" onclick="if(event.target===this)toggleChangelog(false)">
+  <div class="cl-modal">
+    <div class="cl-head"><h3 id="cl-title">Historial de cambios</h3><button class="cl-close" onclick="toggleChangelog(false)" aria-label="Cerrar">&times;</button></div>
+    <div class="cl-body">
+      <div class="cl-ver">
+        <h4>v1.0 <small>31 oct 2026 · 15:53</small></h4>
+        <ul>
+          <li><span class="cl-tag cl-add">NUEVO</span>Menú público de Vaya Baya con bowls y bebidas, fotos, ingredientes y precios.</li>
+          <li><span class="cl-tag cl-add">NUEVO</span>Precios y disponibilidad en vivo desde la calculadora de Proyecto Bowl: si cambia un precio o un bowl se marca como inactivo, el menú lo refleja solo.</li>
+          <li><span class="cl-tag cl-add">NUEVO</span>Abre al instante con una copia de los precios y se actualiza en segundo plano.</li>
+          <li><span class="cl-tag cl-add">NUEVO</span>Favicon y logo de Vaya Baya, colores frambuesa y vainilla.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = "https://proyectobowl-backend.onrender.com/api/data";
+const PACKAGING = ["contenedor", "vaso", "empaque", "cuchara", "servilleta", "sticker", "agua mineral"];
+// Nombre para el cliente según palabras clave del insumo (los nombres internos traen marca y tienda).
+const FRIENDLY = [
+  ["avena", "avena"], ["yogurt", "yogurt griego"], ["plátano", "plátano"], ["platano", "plátano"],
+  ["fresa", "fresa"], ["zarzamora", "zarzamora"], ["mora", "zarzamora"], ["blueberr", "blueberries"],
+  ["mango", "mango"], ["manzana", "manzana"], ["chía", "chía"], ["chia", "chía"],
+  ["granola", "granola"], ["granos ancestrales", "granola de granos ancestrales"], ["coco", "coco tostado"],
+  ["cocoa", "cacao"], ["cacao", "cacao"], ["vainilla", "vainilla"], ["miel", "miel"], ["canela", "canela"],
+  ["acai", "açaí"], ["açaí", "açaí"], ["espirulina", "espirulina"], ["curcuma", "cúrcuma"], ["cúrcuma", "cúrcuma"],
+  ["leche", "leche"], ["café", "café"], ["cafe", "café"]
+];
+const PHOTO = {baby: "bowl-baby", baya: "bowl-baya", apple: "bowl-apple", choco: "bowl-choco", monkey: "bowl-monkey", tropi: "bowl-tropi"};
+const CUP = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8zM17 10h2a2 2 0 0 1 0 4h-2M8 3v2M12 3v2"/></svg>';
+const BOTTLE = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 2h4v4l2 3v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9l2-3V2z"/></svg>';
+
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money = n => "$" + Math.round(n).toLocaleString("es-MX");
+
+function friendly(insumo) {
+  const n = insumo.nombre.toLowerCase();
+  if (PACKAGING.some(k => n.includes(k))) return null;
+  for (const [k, v] of FRIENDLY) if (n.includes(k)) return v;
+  return insumo.nombre.replace(/\s*\(.*?\)\s*/g, "").trim().toLowerCase() || null;
+}
+function ingredients(p, insumos) {
+  const out = [];
+  for (const i of insumos) {
+    if (!p.cantidades || !(+p.cantidades[i.id] > 0)) continue;
+    const f = friendly(i);
+    if (f && !out.includes(f)) out.push(f);
+  }
+  if (!out.length) return "";
+  const s = out.length > 1 ? out.slice(0, -1).join(", ") + " y " + out[out.length - 1] : out[0];
+  return s.charAt(0).toUpperCase() + s.slice(1) + ".";
+}
+function isBowl(p, insumos) {
+  return /bowl/i.test(p.nombre) || insumos.some(i => /contenedor/i.test(i.nombre) && +p.cantidades?.[i.id] > 0);
+}
+function photoFor(p) {
+  const k = p.nombre.trim().split(/\s+/)[0].toLowerCase();
+  return PHOTO[k] ? `img/fotos/${PHOTO[k]}.jpg` : null;
+}
+
+function render(d) {
+  if (!d || !Array.isArray(d.productos)) return;
+  const ins = d.insumos || [];
+  const bowls = [], drinks = [];
+  for (const p of d.productos) (isBowl(p, ins) ? bowls : drinks).push(p);
+  // Activos primero, luego agotados
+  bowls.sort((a, b) => (b.activo ? 1 : 0) - (a.activo ? 1 : 0));
+  document.getElementById("bowlGrid").innerHTML = bowls.map(p => {
+    const img = photoFor(p);
+    return `<article class="card${p.activo ? "" : " off"}">
+      ${img ? `<img src="${img}" alt="${esc(p.nombre)}" loading="lazy" width="1200" height="1200">` : ""}
+      <div class="body">
+        <h3>${esc(p.nombre.replace(/\s*\(temporada\)\s*/i, ""))}${/temporada/i.test(p.nombre) ? '<span class="tag">De temporada</span>' : ""}${p.activo ? "" : '<span class="tag">Agotado</span>'}</h3>
+        <p class="desc">${esc(ingredients(p, ins))}</p>
+        <div class="price">${money(p.precio)}</div>
+      </div>
+    </article>`;
+  }).join("");
+  document.getElementById("drinkList").innerHTML = drinks.filter(p => p.activo).map(p => {
+    const desc = ingredients(p, ins);
+    const icon = /caf|latte/i.test(p.nombre) ? CUP : BOTTLE;
+    return `<li><span class="n">${icon}${esc(p.nombre)}${desc ? `<span class="d">${esc(desc)}</span>` : ""}</span><span class="price">${money(p.precio)}</span></li>`;
+  }).join("");
+}
+
+// Primero la copia local (abre al instante), después los precios en vivo.
+fetch("menu.json", {cache: "no-store"}).then(r => r.json()).then(render).catch(() => {});
+fetch(API, {cache: "no-store"}).then(r => r.ok ? r.json() : null).then(render).catch(() => {});
+
+function toggleChangelog(on) { document.getElementById("changelog").classList.toggle("on", on); }
+document.addEventListener("keydown", e => { if (e.key === "Escape") toggleChangelog(false); });
+</script>
+</body>
+</html>

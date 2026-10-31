@@ -1,0 +1,234 @@
+{
+ "productos": [
+  {
+   "id": "tropi",
+   "nombre": "Baby Bowl",
+   "precio": 179,
+   "activo": true,
+   "cantidades": {
+    "avena": 45,
+    "yogurt": 100,
+    "platano": 1,
+    "coco": 25,
+    "chia": 15,
+    "granola": 30,
+    "miel": 2,
+    "contenedor": 1,
+    "empaque": 1,
+    "fresa": 60,
+    "iaowth": 0.2
+   }
+  },
+  {
+   "id": "berry",
+   "nombre": "Baya Bowl",
+   "precio": 229,
+   "activo": true,
+   "cantidades": {
+    "avena": 45,
+    "yogurt": 100,
+    "fresa": 60,
+    "mora": 40,
+    "chia": 15,
+    "miel": 2,
+    "contenedor": 1,
+    "empaque": 1,
+    "coco": 25,
+    "i34ojk": 50,
+    "i13f6p": 5
+   }
+  },
+  {
+   "id": "apple",
+   "nombre": "Apple pay Bowl",
+   "precio": 169,
+   "activo": true,
+   "cantidades": {
+    "avena": 45,
+    "yogurt": 100,
+    "manzana": 150,
+    "granola": 30,
+    "miel": 2,
+    "contenedor": 1,
+    "empaque": 1,
+    "platano": 1,
+    "canela": 0.2
+   }
+  },
+  {
+   "id": "choco",
+   "nombre": "Choco Bowl",
+   "precio": 169,
+   "activo": true,
+   "cantidades": {
+    "avena": 45,
+    "yogurt": 100,
+    "platano": 1,
+    "cacao": 3,
+    "miel": 2,
+    "contenedor": 1,
+    "empaque": 1,
+    "fresa": 60,
+    "coco": 25
+   }
+  },
+  {
+   "id": "mango",
+   "nombre": "Tropi Bowl (temporada)",
+   "precio": 179,
+   "activo": false,
+   "cantidades": {
+    "avena": 45,
+    "yogurt": 100,
+    "chia": 15,
+    "miel": 2,
+    "contenedor": 1,
+    "empaque": 1,
+    "platano": 1,
+    "mango": 0.5,
+    "coco": 25,
+    "i13f6p": 5
+   }
+  },
+  {
+   "id": "americano",
+   "nombre": "Café americano",
+   "precio": 45,
+   "activo": true,
+   "cantidades": {
+    "cafe": 18,
+    "vasocafe": 1
+   }
+  },
+  {
+   "id": "latte",
+   "nombre": "Café latte",
+   "precio": 65,
+   "activo": true,
+   "cantidades": {
+    "cafe": 18,
+    "leche": 200,
+    "vasocafe": 1
+   }
+  },
+  {
+   "id": "mineral",
+   "nombre": "Agua mineral",
+   "precio": 49,
+   "activo": true,
+   "cantidades": {
+    "agua": 1
+   }
+  },
+  {
+   "id": "ps08pv",
+   "nombre": "Monkey bowl",
+   "precio": 169,
+   "activo": true,
+   "cantidades": {
+    "avena": 45,
+    "yogurt": 100,
+    "platano": 1,
+    "chia": 15,
+    "miel": 2,
+    "coco": 25,
+    "i34ojk": 50,
+    "ij08t0": 0.2
+   }
+  }
+ ],
+ "insumos": [
+  {
+   "id": "avena",
+   "nombre": "Avena Granvita (Aurrera)"
+  },
+  {
+   "id": "yogurt",
+   "nombre": "Yogurt griego Oikos (sams)"
+  },
+  {
+   "id": "platano",
+   "nombre": "Plátano (rappi)"
+  },
+  {
+   "id": "fresa",
+   "nombre": "Fresa (rappi)"
+  },
+  {
+   "id": "mora",
+   "nombre": "Zarzamora (sams)"
+  },
+  {
+   "id": "mango",
+   "nombre": "Mango ataulfo (temporada)"
+  },
+  {
+   "id": "manzana",
+   "nombre": "Manzana gala (rappi)"
+  },
+  {
+   "id": "chia",
+   "nombre": "Chía (Jabalie/Amz)"
+  },
+  {
+   "id": "granola",
+   "nombre": "Granos ancestrales (kirkland)"
+  },
+  {
+   "id": "coco",
+   "nombre": "Coco nibs (Greatmill/Amz)"
+  },
+  {
+   "id": "cacao",
+   "nombre": "Cocoa (Okko/Amz)"
+  },
+  {
+   "id": "miel",
+   "nombre": "Vainilla pasta (Gaya/MLibre)"
+  },
+  {
+   "id": "canela",
+   "nombre": "Canela (Pontino/Amz)"
+  },
+  {
+   "id": "leche",
+   "nombre": "Leche"
+  },
+  {
+   "id": "cafe",
+   "nombre": "Café en grano"
+  },
+  {
+   "id": "contenedor",
+   "nombre": "Contenedor 750 ml + tapa"
+  },
+  {
+   "id": "vasocafe",
+   "nombre": "Vaso de café + tapa"
+  },
+  {
+   "id": "empaque",
+   "nombre": "Cuchara, servilleta, bolsita, sticker"
+  },
+  {
+   "id": "agua",
+   "nombre": "Agua mineral (pieza)"
+  },
+  {
+   "id": "i34ojk",
+   "nombre": "Blueberries (sams)"
+  },
+  {
+   "id": "ij08t0",
+   "nombre": "Espirulina (Avelit/Amz)"
+  },
+  {
+   "id": "i13f6p",
+   "nombre": "Acai (Avelit/Amz)"
+  },
+  {
+   "id": "iaowth",
+   "nombre": "Curcuma (Lasal/Amz)"
+  }
+ ]
+}
