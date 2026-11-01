@@ -48,7 +48,10 @@ luego carga los datos en vivo. Así no se queda en blanco cuando el servidor est
 
 ```
 CNAME                dominio propio vayabaya.foo.ng
-index.html           menú público
+index.html           menú público (con prerender y JSON-LD)
+menu-imprimible.html fuente del PDF
+vaya-baya-menu.pdf   menú en PDF (A4)
+tools/build.py       regenera prerender, JSON-LD y PDF
 uber.html            material para Uber Eats (no indexado, sin link desde el menú)
 common.js            lógica compartida: ingredientes, descripciones, carga de datos
 menu.json            copia de respaldo de productos y precios
@@ -59,6 +62,27 @@ img/
   logo-*.png, favicon-*.png, apple-touch-icon.png
 CHANGELOG.md         historial de versiones (también en el chip del pie de página)
 ```
+
+## Menú estático y PDF
+
+El importador de Uber Eats y algunos buscadores no ejecutan JavaScript. Por eso el menú se
+escribe también directo en `index.html`, y hay un PDF:
+
+| Archivo | Para qué |
+|---|---|
+| `index.html` (con prerender y JSON-LD) | Importar el menú por URL en Uber Eats; Google |
+| `vaya-baya-menu.pdf` | Subir el menú como PDF en Uber, mandarlo a soporte, imprimirlo |
+| `menu-imprimible.html` | Fuente del PDF |
+
+**Cada vez que cambien precios, productos o descripciones**, regenerar:
+
+```
+cd vayabaya/menu
+../../tools/stepstone-browser/.venv/bin/python tools/build.py
+```
+
+Luego subir la versión y hacer commit. Si no se regenera, el menú en vivo igual muestra los
+precios nuevos, pero el HTML estático y el PDF se quedan con los anteriores.
 
 ## Uber Eats
 

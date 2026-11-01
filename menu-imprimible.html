@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Vaya Baya · Menú</title>
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<style>
+:root{--fr:#7A1F37;--va:#EDE3B2;--muted:rgba(122,31,55,.8);--line:rgba(122,31,55,.25)}
+@page{size:A4;margin:0}
+*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:var(--va);color:var(--fr);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.35}
+.sheet{width:210mm;min-height:297mm;margin:0 auto;padding:0 0 10mm;background:var(--va)}
+header{background:var(--fr);text-align:center;padding:9mm 10mm 7mm}
+header img{width:105mm;height:auto;display:block;margin:0 auto}
+header p{color:var(--va);margin:3mm 0 0;font-size:11pt}
+main{padding:6mm 12mm 0}
+h2{font-size:15pt;margin:0 0 3mm;border-bottom:1.5px solid var(--fr);padding-bottom:1.5mm}
+.bowls{display:grid;grid-template-columns:1fr 1fr;gap:4mm 6mm}
+.b{display:grid;grid-template-columns:30mm 1fr;gap:3.5mm;align-items:start;break-inside:avoid}
+.b img{width:30mm;height:30mm;object-fit:cover;border-radius:3mm;display:block}
+.b h3{margin:0;font-size:12pt;display:flex;justify-content:space-between;gap:2mm}
+.b h3 span{white-space:nowrap}
+.b p{margin:1mm 0 0;font-size:8.6pt;color:var(--muted)}
+.b p b{color:var(--fr)}
+.tag{font-size:7.5pt;font-weight:700;background:var(--fr);color:var(--va);padding:.3mm 2mm;border-radius:2mm;display:inline-block;margin-top:1mm}
+.off{opacity:.55}
+.drinks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2mm 6mm}
+.drinks li{display:flex;justify-content:space-between;gap:3mm;border-bottom:1px dotted var(--line);padding:1.5mm 0;font-size:10.5pt}
+.drinks small{display:block;font-size:8pt;color:var(--muted)}
+.note{font-size:8.5pt;color:var(--muted);margin:6mm 0 0;text-align:center}
+footer{text-align:center;font-size:9pt;margin-top:4mm;font-weight:600}
+@media screen{body{padding:16px 0}.sheet{box-shadow:0 4px 24px rgba(0,0,0,.2)}}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header>
+    <img src="img/logo-horizontal.png" alt="Vaya Baya" width="1000" height="281">
+    <p>Bowls de overnight avena cremosa con yogurt griego natural</p>
+  </header>
+  <main>
+    <h2>Bowls</h2>
+    <div class="bowls" id="bowls"></div>
+    <h2 style="margin-top:6mm">Bebidas</h2>
+    <ul class="drinks" id="drinks"></ul>
+    <p class="note" id="note">No utilizamos azúcar; la pasta de vainilla les da un ligero toque dulce.<br>Precios en pesos mexicanos, IVA incluido. Porción de bowl: 750 ml.</p>
+    <footer>vayabaya.foo.ng · Colonia Obrera, Ciudad de México</footer>
+  </main>
+</div>
+<script src="common.js"></script>
+<script>
+function render(d) {
+  if (!d || !Array.isArray(d.productos)) return;
+  const ins = d.insumos || [];
+  const bowls = d.productos.filter(p => isBowl(p, ins)).sort((a, b) => (b.activo ? 1 : 0) - (a.activo ? 1 : 0));
+  const drinks = d.productos.filter(p => !isBowl(p, ins) && p.activo);
+  document.getElementById("bowls").innerHTML = bowls.map(p => {
+    const desc = descFor(p), img = photoFor(p), name = p.nombre.replace(/\s*\(temporada\)\s*/i, "");
+    const body = desc
+      ? `<p>${esc(desc.base)}</p><p><b>Fruta:</b> ${esc(desc.fruta)} <b>Topping:</b> ${esc(desc.topping)}</p>`
+      : `<p>${esc(ingredients(p, ins))}</p>`;
+    const tags = (/temporada/i.test(p.nombre) ? '<span class="tag">De temporada</span> ' : "") + (p.activo ? "" : '<span class="tag">Agotado</span>');
+    return `<div class="b${p.activo ? "" : " off"}">${img ? `<img src="${img}" alt="">` : "<div></div>"}
+      <div><h3>${esc(name)}<span>${money(p.precio)}</span></h3>${body}${tags ? `<div>${tags}</div>` : ""}</div></div>`;
+  }).join("");
+  document.getElementById("drinks").innerHTML = drinks.map(p => {
+    const desc = ingredients(p, ins);
+    return `<li><span>${esc(p.nombre)}${desc ? `<small>${esc(desc)}</small>` : ""}</span><b>${money(p.precio)}</b></li>`;
+  }).join("");
+  if (DESC && DESC.nota) document.getElementById("note").innerHTML = esc(DESC.nota) + "<br>Precios en pesos mexicanos, IVA incluido. Porción de bowl: 750 ml.";
+  document.body.dataset.ready = "1";
+}
+loadMenuData(render);
+</script>
+</body>
+</html>

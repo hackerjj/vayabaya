@@ -3,6 +3,18 @@
 Menú público de Vaya Baya. Lo más reciente arriba. La misma lista vive en el chip de versión
 del pie de página.
 
+## v1.6 — 01 nov 2026 · 14:46
+### Agregado
+- Prerender: `tools/build.py` abre el menú en Chrome y escribe los bowls y bebidas dentro de
+  `index.html` (marcadores `PRERENDER`), para que se lea sin JavaScript (importador de Uber
+  Eats, Google). El JavaScript sigue actualizando precios en vivo encima.
+- JSON-LD `Restaurant` → `Menu` → `MenuSection` → `MenuItem` con precio en MXN y
+  disponibilidad.
+- `menu-imprimible.html` y `vaya-baya-menu.pdf` (A4, una página), con link de descarga en el
+  pie del menú.
+### Cambiado
+- Canonical, og:url y og:image en `http://` hasta que salga el certificado HTTPS.
+
 ## v1.5 — 31 oct 2026 · 18:11
 ### Agregado
 - Dominio propio `vayabaya.foo.ng` (archivo `CNAME`, PR #364 de Pokymon/foo.ng). La URL
