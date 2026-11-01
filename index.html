@@ -8,7 +8,9 @@
 <meta name="theme-color" content="#7A1F37">
 <meta property="og:title" content="Vaya Baya · Menú">
 <meta property="og:description" content="Bowls de avena, yogurt griego y fruta, y café. Colonia Obrera, CDMX.">
-<meta property="og:image" content="img/logo-vainilla-2-lineas.png">
+<meta property="og:image" content="https://vayabaya.foo.ng/img/logo-vainilla-2-lineas.png">
+<meta property="og:url" content="https://vayabaya.foo.ng/">
+<link rel="canonical" href="https://vayabaya.foo.ng/">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
 <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
@@ -91,13 +93,19 @@ footer p{margin:4px 0}
 <footer>
   <p><strong>Vaya Baya</strong> · Colonia Obrera, Ciudad de México</p>
   <p>Muy pronto en Uber Eats y Rappi.</p>
-  <button type="button" class="ver-chip" onclick="toggleChangelog(true)" aria-haspopup="dialog">v1.4</button>
+  <button type="button" class="ver-chip" onclick="toggleChangelog(true)" aria-haspopup="dialog">v1.5</button>
 </footer>
 
 <div class="cl-backdrop" id="changelog" role="dialog" aria-modal="true" aria-labelledby="cl-title" onclick="if(event.target===this)toggleChangelog(false)">
   <div class="cl-modal">
     <div class="cl-head"><h3 id="cl-title">Historial de cambios</h3><button class="cl-close" onclick="toggleChangelog(false)" aria-label="Cerrar">&times;</button></div>
     <div class="cl-body">
+      <div class="cl-ver">
+        <h4>v1.5 <small>31 oct 2026 · 18:11</small></h4>
+        <ul>
+          <li><span class="cl-tag cl-add">NUEVO</span>Dominio propio <strong>vayabaya.foo.ng</strong>. La dirección vieja de GitHub Pages redirige sola.</li>
+        </ul>
+      </div>
       <div class="cl-ver">
         <h4>v1.4 <small>31 oct 2026 · 16:45</small></h4>
         <ul>

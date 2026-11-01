@@ -11,11 +11,10 @@ Este repo es el **menú público** y la **página con el material para Uber Eats
 
 | Qué | Link | Para quién |
 |---|---|---|
-| Menú | https://hackerjj.github.io/vayabaya/ | Clientes |
-| Material para Uber Eats | https://hackerjj.github.io/vayabaya/uber.html | Equipo (fotos, textos y precios para subir a Uber) |
+| Menú | https://vayabaya.foo.ng/ | Clientes |
+| Material para Uber Eats | https://vayabaya.foo.ng/uber.html | Equipo (fotos, textos y precios para subir a Uber) |
 | Calculadora de costos y precios | https://hackerjj.github.io/proyectobowl/ | Equipo (insumos, recetas, márgenes) |
 | Marca, fotos y descripciones | https://github.com/andvelasco/vayabaya | Equipo |
-| Dominio propio | https://vayabaya.foo.ng/ | En trámite ([PR #364](https://github.com/Pokymon/foo.ng/pull/364)). Cuando se active, los links de arriba redirigen solos. |
 
 ## Menú
 
@@ -48,6 +47,7 @@ luego carga los datos en vivo. Así no se queda en blanco cuando el servidor est
 ## Archivos
 
 ```
+CNAME                dominio propio vayabaya.foo.ng
 index.html           menú público
 uber.html            material para Uber Eats (no indexado, sin link desde el menú)
 common.js            lógica compartida: ingredientes, descripciones, carga de datos

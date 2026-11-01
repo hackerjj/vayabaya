@@ -3,6 +3,11 @@
 Menú público de Vaya Baya. Lo más reciente arriba. La misma lista vive en el chip de versión
 del pie de página.
 
+## v1.5 — 31 oct 2026 · 18:11
+### Agregado
+- Dominio propio `vayabaya.foo.ng` (archivo `CNAME`, PR #364 de Pokymon/foo.ng). La URL
+  `hackerjj.github.io/vayabaya/` redirige al dominio nuevo. Canonical y og:url actualizados.
+
 ## v1.4 — 31 oct 2026 · 16:45
 ### Corregido
 - Las tarjetas del menú recortaban la base de Andrea; ahora muestran el texto completo
