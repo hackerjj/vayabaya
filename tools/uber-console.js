@@ -4,6 +4,7 @@
 // 1) Abre "Add category" y da clic en el botón de la categoría → revisa → Save.
 // 2) Abre "Add item" y da clic en el botón del producto → revisa → Save.
 // El script solo llena campos; nunca guarda por ti.
+// v2: detecta paneles fijos (position:fixed).
 (() => {
   const MENU = "Desayuno & Brunch";
   const FOTO = k => `https://raw.githubusercontent.com/hackerjj/vayabaya/main/img/uber/uber-bowl-${k}.jpg`;
@@ -24,9 +25,14 @@
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const log = (m, ok = true) => { console.log(`%c[Vaya Baya] ${m}`, `color:${ok ? "#2e7d4f" : "#b00020"}`); status(m, ok); };
 
+  // Visible aunque sea position:fixed (offsetParent es null en elementos fijos)
+  const visible = el => { const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0 && getComputedStyle(el).visibility !== "hidden"; };
   function panel() {
-    const asides = [...document.querySelectorAll("aside")].filter(a => a.offsetParent !== null && a.querySelector("input,textarea"));
-    return asides[asides.length - 1] || null;
+    const asides = [...document.querySelectorAll('aside, [role="dialog"]')].filter(a => visible(a) && a.querySelector("input,textarea"));
+    if (asides.length) return asides[asides.length - 1];
+    // Respaldo: el contenedor del campo Name visible
+    const n = [...document.querySelectorAll('input[name="name"]')].filter(visible).pop();
+    return n ? (n.closest("aside,form,[role=dialog]") || n.closest("div[class]")?.parentElement?.parentElement || document.body) : null;
   }
   // Busca el campo por el texto de su etiqueta (Name, Description, Price, Menus...)
   function field(root, labels) {
